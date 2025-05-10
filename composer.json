@@ -1,14 +1,21 @@
 {
-    "name": "mokhosh/filament-jalali",
-    "description": "Add Jalali datetime to your filament tables",
+    "name": "agelgil/filament-ethiopic-calendar",
+    "description": "Add Ethiopic datetime to your filament tables",
     "keywords": [
-        "mokhosh",
         "laravel",
-        "filament-jalali"
+        "agelgil",
+        "filament",
+        "ethiopic",
+        "calender"
     ],
-    "homepage": "https://github.com/mokhosh/filament-jalali",
+    "homepage": "https://github.com/agelgil/filament-ethiopic-calendar",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Samson Endale",
+            "email": "git@sam.et",
+            "role": "Developer"
+        },
         {
             "name": "Mo Khosh",
             "email": "mskhoshnazar@gmail.com",
@@ -19,7 +26,6 @@
         "php": "^8.1",
         "filament/filament": "^3.0",
         "illuminate/contracts": "^10.0|^11.0|^12.0",
-        "morilog/jalali": "^v3.4.2",
         "spatie/laravel-package-tools": "^1.14.0"
     },
     "require-dev": {
@@ -32,13 +38,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mokhosh\\FilamentJalali\\": "src/",
-            "Mokhosh\\FilamentJalali\\Database\\Factories\\": "database/factories/"
+            "Agelgil\\FilamentEthiopic\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mokhosh\\FilamentJalali\\Tests\\": "tests/"
+            "Agelgil\\FilamentEthiopic\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -58,11 +63,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Mokhosh\\FilamentJalali\\FilamentJalaliServiceProvider"
-            ],
-            "aliases": {
-                "FilamentJalali": "Mokhosh\\FilamentJalali\\Facades\\FilamentJalali"
-            }
+                "Agelgil\\FilamentEthiopic\\FilamentEthiopicServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

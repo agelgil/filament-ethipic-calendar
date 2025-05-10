@@ -1,14 +1,15 @@
 {
-    "name": "filament-jalali",
+    "name": "filament-ethiopic-calendar",
     "version": "3.5.0",
-    "description": "Add Jalali datetime to your filament tables",
+    "description": "Add Ethiopic datetime to your filament projects",
     "type": "module",
     "scripts": {
         "build": "node bin/build.js"
     },
     "dependencies": {
+        "@calidy/dayjs-calendarsystems": "^1.11.3",
         "dayjs": "^1.11.12",
         "esbuild": "^0.23.1",
-        "@calidy/dayjs-calendarsystems": "^1.11.3"
+        "ethiopian-date": "^0.0.6"
     }
 }

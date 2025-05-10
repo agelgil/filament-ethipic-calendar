@@ -17,9 +17,9 @@
     $suffixIcon = $getSuffixIcon();
     $suffixLabel = $getSuffixLabel();
     $statePath = $getStatePath();
-    $months = trans('filament-jalali::months');
-    $dayLabels = trans('filament-jalali::days.long');
-    $dayShortLabels = trans('filament-jalali::days.short');
+    $months = trans('filament-ethiopic-calendar::months');
+    $dayLabels = trans('filament-ethiopic-calendar::days.long');
+    $dayShortLabels = trans('filament-ethiopic-calendar::days.short');
 @endphp
 
 <x-dynamic-component
@@ -48,8 +48,8 @@
                 @else
                     x-load
                 @endif
-                x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-jalali', 'mokhosh/filament-jalali') }}"
-                x-data="filamentJalaliFormComponent({
+                x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-ethiopic-calendar', 'agelgil/filament-ethiopic-calendar') }}"
+                x-data="filamentEthiopicCalendarComponent({
                             displayFormat:
                                 '{{ convert_date_format($getDisplayFormat())->to('day.js') }}',
                             firstDayOfWeek: {{ $getFirstDayOfWeek() }},

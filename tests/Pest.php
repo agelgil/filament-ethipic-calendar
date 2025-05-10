@@ -1,6 +1,6 @@
 <?php
 
-use Mokhosh\FilamentJalali\Tests\TestCase;
+use Agelgil\FilamentEthiopic\Tests\TestCase;
 
 pest()
     ->extends(TestCase::class)

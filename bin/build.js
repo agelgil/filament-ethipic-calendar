@@ -45,6 +45,6 @@ const defaultOptions = {
 
 compile({
     ...defaultOptions,
-    entryPoints: ['./resources/js/components/filament-jalali.js'],
-    outfile: './resources/js/dist/components/filament-jalali.js',
+    entryPoints: ['./resources/js/components/filament-ethiopic-calendar.js'],
+    outfile: './resources/js/dist/components/filament-ethiopic-calendar.js',
 })

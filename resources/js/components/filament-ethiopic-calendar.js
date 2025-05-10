@@ -4,18 +4,18 @@ import localeData from 'dayjs/plugin/localeData'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import calendarSystems from "@calidy/dayjs-calendarsystems";
-import PersianCalendarSystem from "@calidy/dayjs-calendarsystems/calendarSystems/PersianCalendarSystem";
+import EthiopianCalendarSystem from "./EthiopianCalendarSystem";
 
 dayjs.extend(customParseFormat)
 dayjs.extend(localeData)
 dayjs.extend(timezone)
 dayjs.extend(utc)
 dayjs.extend(calendarSystems)
-dayjs.registerCalendarSystem("persian", new PersianCalendarSystem());
+dayjs.registerCalendarSystem("ethiopic", new EthiopianCalendarSystem());
 
 window.dayjs = dayjs
 
-export default function filamentJalaliFormComponent({
+export default function filamentEthiopicCalendarComponent({
                                                         displayFormat,
                                                         firstDayOfWeek,
                                                         isAutofocused,
@@ -61,11 +61,10 @@ export default function filamentJalaliFormComponent({
 
         init: function () {
             dayjs.locale(locales[locale] ?? locales['en']);
-            this.focusedDate = dayjs().tz(timezone).toCalendarSystem("persian")
-
+            this.focusedDate = dayjs().tz(timezone).toCalendarSystem("ethiopic")
             let date =
                 this.getSelectedDate() ??
-                dayjs().tz(timezone).toCalendarSystem("persian").hour(0).minute(0).second(0)
+                dayjs().tz(timezone).toCalendarSystem("ethiopic").hour(0).minute(0).second(0)
 
             if (this.getMaxDate() !== null && date.isAfter(this.getMaxDate())) {
                 date = null
@@ -112,7 +111,7 @@ export default function filamentJalaliFormComponent({
                 let year = +this.focusedYear
 
                 if (!Number.isInteger(year)) {
-                    year = dayjs().tz(timezone).toCalendarSystem("persian").year()
+                    year = dayjs().tz(timezone).toCalendarSystem("ethiopic").year()
 
                     this.focusedYear = year
                 }
@@ -291,7 +290,7 @@ export default function filamentJalaliFormComponent({
         },
 
         dayIsDisabled: function (day) {
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             return this.dateIsDisabled(this.focusedDate.date(day))
         },
@@ -303,7 +302,7 @@ export default function filamentJalaliFormComponent({
                 return false
             }
 
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             return (
                 selectedDate.date() === day &&
@@ -313,7 +312,7 @@ export default function filamentJalaliFormComponent({
         },
 
         dayIsToday: function (day) {
-            let date = dayjs().tz(timezone).toCalendarSystem("persian")
+            let date = dayjs().tz(timezone).toCalendarSystem("ethiopic")
             this.focusedDate ??= date
 
             return (
@@ -324,25 +323,25 @@ export default function filamentJalaliFormComponent({
         },
 
         focusPreviousDay: function () {
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             this.focusedDate = this.focusedDate.subtract(1, 'day')
         },
 
         focusPreviousWeek: function () {
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             this.focusedDate = this.focusedDate.subtract(1, 'week')
         },
 
         focusNextDay: function () {
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             this.focusedDate = this.focusedDate.add(1, 'day')
         },
 
         focusNextWeek: function () {
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             this.focusedDate = this.focusedDate.add(1, 'week')
         },
@@ -377,13 +376,13 @@ export default function filamentJalaliFormComponent({
         getMaxDate: function () {
             let date = dayjs(this.$refs.maxDate?.value)
 
-            return date.isValid() ? date.toCalendarSystem("persian") : null
+            return date.isValid() ? date.toCalendarSystem("ethiopic") : null
         },
 
         getMinDate: function () {
             let date = dayjs(this.$refs.minDate?.value)
 
-            return date.isValid() ? date.toCalendarSystem("persian") : null
+            return date.isValid() ? date.toCalendarSystem("ethiopic") : null
         },
 
         getSelectedDate: function () {
@@ -395,7 +394,7 @@ export default function filamentJalaliFormComponent({
                 return null
             }
 
-            let date = dayjs(this.state).toCalendarSystem("persian")
+            let date = dayjs(this.state).toCalendarSystem("ethiopic")
 
             if (!date.isValid()) {
                 return null
@@ -409,7 +408,7 @@ export default function filamentJalaliFormComponent({
                 this.focusedDate =
                     this.getSelectedDate() ??
                     this.getMinDate() ??
-                    dayjs().tz(timezone).toCalendarSystem("persian")
+                    dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
                 this.setupDaysGrid()
             }
@@ -422,7 +421,7 @@ export default function filamentJalaliFormComponent({
                 this.setFocusedDay(day)
             }
 
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             this.setState(this.focusedDate)
 
@@ -448,11 +447,11 @@ export default function filamentJalaliFormComponent({
         },
 
         setupDaysGrid: function () {
-            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("persian")
+            this.focusedDate ??= dayjs().tz(timezone).toCalendarSystem("ethiopic")
 
             this.emptyDaysInFocusedMonth = Array.from(
                 {
-                    length: this.focusedDate.date(8 - firstDayOfWeek).day(),
+                    length: this.focusedDate.date(7 - firstDayOfWeek).day(),
                 },
                 (_, i) => i + 1,
             )
@@ -499,39 +498,6 @@ export default function filamentJalaliFormComponent({
 }
 
 const locales = {
-    ar: require('dayjs/locale/ar'),
-    bs: require('dayjs/locale/bs'),
-    ca: require('dayjs/locale/ca'),
-    cs: require('dayjs/locale/cs'),
-    cy: require('dayjs/locale/cy'),
-    da: require('dayjs/locale/da'),
-    de: require('dayjs/locale/de'),
+    am: require('dayjs/locale/am'),
     en: require('dayjs/locale/en'),
-    es: require('dayjs/locale/es'),
-    fa: require('dayjs/locale/fa'),
-    fi: require('dayjs/locale/fi'),
-    fr: require('dayjs/locale/fr'),
-    hi: require('dayjs/locale/hi'),
-    hu: require('dayjs/locale/hu'),
-    hy: require('dayjs/locale/hy-am'),
-    id: require('dayjs/locale/id'),
-    it: require('dayjs/locale/it'),
-    ja: require('dayjs/locale/ja'),
-    ka: require('dayjs/locale/ka'),
-    km: require('dayjs/locale/km'),
-    ku: require('dayjs/locale/ku'),
-    ms: require('dayjs/locale/ms'),
-    my: require('dayjs/locale/my'),
-    nl: require('dayjs/locale/nl'),
-    pl: require('dayjs/locale/pl'),
-    pt_BR: require('dayjs/locale/pt-br'),
-    pt_PT: require('dayjs/locale/pt'),
-    ro: require('dayjs/locale/ro'),
-    ru: require('dayjs/locale/ru'),
-    sv: require('dayjs/locale/sv'),
-    tr: require('dayjs/locale/tr'),
-    uk: require('dayjs/locale/uk'),
-    vi: require('dayjs/locale/vi'),
-    zh_CN: require('dayjs/locale/zh-cn'),
-    zh_TW: require('dayjs/locale/zh-tw'),
 }
